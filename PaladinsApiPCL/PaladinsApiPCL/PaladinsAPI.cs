@@ -29,11 +29,10 @@ namespace PaladinsAPI.Models
             Spanish = 7,
             Spanish_Latin_America = 9,
             Portuguese = 10,
-            Russian = 11, 
+            Russian = 11,
             Polish = 12,
             Turkish = 13
         }
-
         public enum QueueType
         {
             Challenge_K_StoneKeep = 423,
@@ -77,102 +76,86 @@ namespace PaladinsAPI.Models
             PaladinsAPI.devId = devId;
             PaladinsAPI.authKey = authKey;
         }
-
         public static async Task<DataUsed> GetDataUsed()
         {
             return (await Request<List<DataUsed>>("getdataused")).ElementAt(0);
         }
-
         public static async Task<List<MatchDetails>> GetMOTD()
         {
             return await Request<List<MatchDetails>>("getmotd");
         }
-
         public static async Task<Player> GetPlayer(string name)
         {
             return (await Request<List<Player>>("getplayer", name)).ElementAt(0);
         }
-
         public static async Task<PlayerAchievements> GetPlayerAchievements(int id)
         {
             return (await Request<PlayerAchievements>("getplayerachievements", id));
         }
-
         public static async Task<PlayerStatus> GetPlayerStatus(string playerName)
         {
             return (await Request<List<PlayerStatus>>("getplayerstatus", playerName)).ElementAt(0);
         }
-
+        public static async Task<List<PlayerLoadouts>> GetPlayerLoadouts(int playerId)
+        {
+            return await Request<List<PlayerLoadouts>>("getplayerloadouts", playerId);
+        }
         public static async Task<List<Friend>> GetFriends(string playerName)
         {
             return await Request<List<Friend>>("getfriends", playerName);
         }
-
         public static async Task<List<Friend>> GetFriends(int playerId)
         {
             return await Request<List<Friend>>("getfriends", playerId);
         }
-
         public static async Task<List<TopMatch>> GetTopMatches()
         {
             return await Request<List<TopMatch>>("gettopmatches");
         }
-
         public static async Task<List<MatchId>> GetMatchIdsByQueueAsync(QueueType queue, string date, string hour)
         {
             return await Request<List<MatchId>>("getmatchidsbyqueue", queue, date, hour);
         }
-
         public static async Task<List<MatchPlayer>> GetMatchPlayer(int matchId)
         {
             return await Request<List<MatchPlayer>>("getmatchplayerdetails", matchId);
         }
-
         public static async Task<List<MatchDetails>> GetMatchDetails(int matchId)
         {
             return await Request<List<MatchDetails>>("getmatchdetails", matchId);
         }
-
         public static async Task<List<MatchHistory>> GetMatchHistory(string playerName)
         {
             return await Request<List<MatchHistory>>("getmatchhistory", playerName);
         }
-
         public static async Task<List<MatchHistory>> GetMatchHistory(int playerId)
         {
             return await Request<List<MatchHistory>>("getmatchhistory", playerId);
         }
-
         public static async Task<List<Item>> GetItems(eLanguageCode languageCode)
         {
             return await Request<List<Item>>("getitems", languageCode);
         }
-
         public static async Task<List<Champion>> GetChampions(eLanguageCode languageCode)
         {
             return await Request<List<Champion>>("getchampions", languageCode);
         }
-
         public static async Task<List<ChampionSkin>> GetChampionSkins(int championId, eLanguageCode languageCode)
         {
             return await Request<List<ChampionSkin>>("getchampionskins", championId, languageCode);
         }
-
         public static async Task<List<ChampionRank>> GetChampionRanks(string playerName)
         {
             return await Request<List<ChampionRank>>("getchampionranks", playerName);
         }
-
         public static async Task<List<ChampionRank>> GetChampionRanks(int playerID)
         {
             return await Request<List<ChampionRank>>("getchampionranks", playerID);
         }
-
         public static async Task<List<QueueChampionStat>> GetQueueStats(string playerName, QueueType queue)
         {
             return await Request<List<QueueChampionStat>>("getqueuestats", playerName, queue);
         }
-
         public static async Task<List<QueueChampionStat>> GetQueueStats(int playerId, QueueType queue)
         {
             return await Request<List<QueueChampionStat>>("getqueuestats", playerId, queue);
@@ -370,6 +353,22 @@ namespace PaladinsAPI.Models
         public string status_string { get; set; }
         public int playerId { get; set; }
     }
+    public class PlayerLoadouts : PaladinsResponse
+    {
+        public int ChampionId { get; set; }
+        public string ChampionName { get; set; }
+        public int DeckId { get; set; }
+        public string DeckName { get; set; }
+        public List<LoadoutItem> LoadoutItems { get; set; }
+        public int playerId { get; set; }
+        public string playerName { get; set; }
+    }
+    public class LoadoutItem
+    {
+        public int ItemId { get; set; }
+        public string ItemName { get; set; }
+        public int Points { get; set; }
+    }
     public class Friend : PaladinsResponse
     {
         public string account_id { get; set; }
@@ -437,7 +436,6 @@ namespace PaladinsAPI.Models
         public int skin_id2 { get; set; }
         public string skin_name { get; set; }
     }
-
     public class QueueChampionStat : PaladinsResponse
     {
         public int Assists { get; set; }
