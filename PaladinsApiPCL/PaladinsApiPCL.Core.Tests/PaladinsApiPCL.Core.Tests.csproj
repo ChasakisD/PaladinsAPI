@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PaladinsApiPCL-Core\PaladinsApiPCL-Core.csproj" />
+    <ProjectReference Include="..\PaladinsApiPCL.Core\PaladinsApiPCL.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

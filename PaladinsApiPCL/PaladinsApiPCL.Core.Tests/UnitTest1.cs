@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PaladinsApiPCL_Core.Tests
+namespace PaladinsApiPCL.Core.Tests
 {
     public class UnitTest1
     {
