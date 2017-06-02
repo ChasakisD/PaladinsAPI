@@ -26,14 +26,6 @@ namespace PaladinsApiPCL.Core.Tests
         }
 
         [Fact]
-        public async Task CanGet()
-        {
-            PaladinsAPI.Initializer(devId, authKey);
-
-
-        }
-
-        [Fact]
         public async Task CanGetChampionRanksByName()
         {
             PaladinsAPI.Initializer(devId, authKey);
