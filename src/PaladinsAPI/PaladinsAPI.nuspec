@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PaladinsAPI</id>
+    <version>1.0.2</version>
+    <title>Paladins API Wrapper</title>
+    <authors>ChasakisD</authors>
+    <owners>ChasakisD</owners>
+    <projectUrl>https://github.com/ChasakisD/PaladinsAPI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C# wrapper which provides all the functionality of Paladins API.</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Paladins API PaladinsAPI C#</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="10.0.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Debug\PaladinsAPI.dll" target="lib"></file>
+  </files>
+</package>
