@@ -45,6 +45,11 @@ namespace PaladinsAPI
             }
         }
 
+        public async Task<PatchInfo> GetPatchInfo()
+        {
+            return await Request<PatchInfo>("getpatchinfo");
+        }
+
         public async Task<DataUsed> GetDataUsed()
         {
             return (await Request<List<DataUsed>>("getdataused")).ElementAt(0);
@@ -167,12 +172,14 @@ namespace PaladinsAPI
             var jsonResponse = await client.GetStringAsync(url);
             var result = JsonConvert.DeserializeObject<T>(jsonResponse);
 
+            /* Variables to hold the exception if any */
             var foundProblem = false;
             var errorMessage = string.Empty;
-            /* Player Achievements is the only one that does not contain list,
+
+            /* Player Achievements and Patch Info is the only one that does not contain list,
              * so there is no generictypedefinition and we will get an
              * exception */
-            if (result is PlayerAchievements)
+            if (result is PlayerAchievements || result is PatchInfo)
             {
                 var basic = result as PaladinsResponse;
                 if (basic.ret_msg != null)
